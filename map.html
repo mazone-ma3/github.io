@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" name="" content="text/html; charset=x-sjis">
+<title>m@3記念館 色々なレトロパソコン機種でMAP表示(z88dk/CMOC/gcc6809)</title>
+</head>
+<body bgcolor="#FFFFDD">
+<!--S--><!--U--><!--FONT COLOR="BLUE"-->
+m@3記念館 MAP表示<br>
+MAP表示をz88dk/CMOC/gcc6809+DISK-BASIC、gcc-ia16等で作ってみた。<br>
+<hr>
+<b>[ソース、データ、変換プログラムなど]</b><br>
+<a href="https://web.archive.org/web/20241217153842/https://www.dropbox.com/sh/d20mr0yjm5vmt4o/AACW7vmeEqPSCvr6ZN3XCHVma?dl=1">パレットフェードインアウト付き版</a><font color="RED">(2023/12/14更新)</font><br>
+<a href="https://web.archive.org/web/20241217153842/https://www.dropbox.com/sh/vg9x5q995hlsje6/AACzMrUIL-2esHf8e4CpkLwra?dl=1">パレットフェードインアウト無し版</a><font color="RED">(2023/12/14更新)</font><br>
+<a href="https://web.archive.org/web/20241217153842/https://www.dropbox.com/scl/fi/jkrmtkcvtziiodzaucxbm/MAP77AV2.ZIP?rlkey=rli3tkifn07q0ndpoxnllkz97&amp;st=aq3ppr7u&amp;dl=1">FM77AV</a>gcc新版<font color="RED">(2024/10/6更新)</font><br>
+(ディスクイメージじゃないので各binフォルダ以下をL3 DiskExplorerやeditdisk(DiskExplorer)などの操作ツールで入れて下さい)<br>
+
+<a href="https://web.archive.org/web/20241217153842/https://www.dropbox.com/s/lr9p4137pv65i07/BASICZ88.ZIP?dl=1">z88dkのDISK-BASIC用cfg/asm修正ファイル・新版</a><font color="RED">(2023/3/20更新)</font> -zorg=で開始アドレスをいじれるようにしてみた。<br><br>
+<font color="RED">忙しい人のためのディスクイメージ(最新版とは限りません)</font><br>
+<a href="https://web.archive.org/web/20241217153842/https://www.dropbox.com/s/mnoxr53xyiltjzu/MAP88SR.ZIP?dl=1">PC-8801(mk2SR)</a>(ALPHA-MINI使用)<br>
+<a href="https://web.archive.org/web/20241217153842/https://www.dropbox.com/s/1kppapm6s5p426d/MAPMSX2.ZIP?dl=1">MSX2</a>(MSX-DOS2フォーマット) <a href="https://web.archive.org/web/20241217153842/https://webmsx.org/?MACHINE=MSX2PJ&amp;DISKA_URL=https://www.dropbox.com/s/1kppapm6s5p426d/MAPMSX2.ZIP?dl=1">WebMSXで見る</a>
+<br>
+<a href="https://web.archive.org/web/20241217153842/https://www.dropbox.com/s/al00t84cjq3ai8a/MAP98VM.ZIP?dl=1">PC-9801VM/UV</a>(FreeDOS(98)使用) <font color="RED">GDCは2.5MHzにして下さい。</font><br>
+<a href="https://web.archive.org/web/20241217153842/https://www.dropbox.com/scl/fi/qi9hrw7vy69j37h6xf3wy/SSG88_2.ZIP?rlkey=adrplc2d8u9fv7ziorwi2guvw&amp;st=4o3jdrgo&amp;dl=1">PC-8801mk2SR</a>(.COM版/LSX-Dodgers使用/枠、サウンド付き)<font color="RED">(2024/8/26更新)</font><br>
+<a href="https://web.archive.org/web/20241217153842/https://www.dropbox.com/scl/fi/y8g1a19pj7dgguzuioqrj/PSGX1_2.ZIP?rlkey=m4aydwlxbmzpyhnb05vpcutmm&amp;st=zgkw7cig&amp;dl=1">X1 turbo</a>(.COM版/LSX-Dodgers使用/枠、サウンド付き)<font color="RED">(2024/8/29更新)</font><br>
+<br>
+<b>[.COM版/MSX-DOS及びLSX-Dodgers向け]</b><br>
+<a href="https://web.archive.org/web/20241217153842/https://www.dropbox.com/s/f5n9v3nuqzh2snw/MAP_COM.ZIP?dl=1">MSX2/PC-8801(mkIISR)/X1(X1turbo/X1turboZ)</a><font color="RED">(2023/12/4更新/ZSDCC版のみ)</font><br>
+メモリ不足から少し解放。grp88/grpx1/pcgx1t/clsx1/cls88はおまけ。<font color="RED">ノーマルX1でも動くようにしてみた(pcgx1.c/mapx1s3.c)。</font>(機種判定参考NRTDRV)
+<br><br>
+<font color="RED">PC-88/X1の.COM版とFM77AV版はトップページに枠を付けるプログラムが置いてあります。MSX2の枠付きは.COM版に入ってます。</font>
+<hr>
+(以下、覚え書き)<br>
+[.COM版]
+ハイレゾだと3倍速でもPCG定義に失敗することがある。turboモードのと使い分けた方がいいのかも。→(2023/2/15)一旦CRTCを15kHzにして定義して24kHzに戻さないとならないらしい。<br>
+(2023/2/13)PC-88版が1.57で飛ぶのを修正。したはず。強制25行モードになるのでいいはず。<br>
+(2023/2/20)X1版がハイレゾで1ラインずれるのでCRTCのR5の設定値を(2でも1でもなく)0に改めて変更。キー割り込みを止めて入力を見直したけど良くならず。→(2023/5/3追記)CRTCの値は修正して頂きました。感謝。<br>
+(2023/3/7)MSX版の終了時に画面設定をある程度戻すようにした。(2023/3/10)MSX2・ZSDCC版の無駄な#を消去(2023/3/15)MSX2のダブルバッファ版を作成。少しだけ高速化。<br>
+(2023/3/19-20)PC-88・ALU変更版追加(2023/3/25)X1版一部アセンブラ化。(2023/3/27-29)各機種MAINのアセンブラ化。MSX2版VDP処理見直し。PC-88版POP-LD転送化(参考:Code Knowledge)。旧版は手付かず。
+<hr>
+マップデータは128x128の2x2圧縮で16KB弱 パーツは8x8(MSX SCREEN5)16x8(MSX SCREEN5以外)の256(MSX SCREEN5/PC-98)/128(PCGマシン)パーツ 表示は画面の左側に正方形で収まる位 キャラはマップと重ね合わせる<br>
+<font color="RED">(MSX2とPC-98以外で一部化けてるのは仕様です。パーツ定義数が足りないので)→表示されるよう修正しました。(2023/2/9)</font><br>
+MSX2とPCG以外の画像ファイルはBRG1バイトずつ並ぶ、ジョイスティック・キーボード入力対応、ESCキーで終了<br>
+(z88dkのcfg/asmファイルとかMSX以外DISK-BASICからのロードを想定していないのでいじってます。バージョンによっては差し替えると動かなくなるかも。)<br><br>
+(2022/3/14)全体的にファイル名変更。気になるところが多すぎて直しきれない。大したことやってないのに手を広げ過ぎたため。<br>
+(2022/3/16)MSX2以外のZ80もZSDCC化。比べると速い。一部ファイル再改名。(2023/4/7)一部MAINアセンブラ化<br>
+<hr>
+[PC-8801(mk2SR)](map88.c/bas) 主な資料:Web、PC-8801シリーズマシン語ゲームグラフィックス<br>
+プログラムA700H-/マップ4000H-/マップパーツ2000H-/マスクデータ1600H-/キャラデータ C700H-<br>
+ALUも試したが結局パーツはメインRAM行き。遅いので画像転送はインラインアセンブラに染めるが4MHzではまだ遅い。ループに時間かかってる?<br><font color="RED">(2022/3/8)画面下のみっともないのは消しました。これでもSPLITと共存出来なくもない。</font><br>
+(2022/3/14)BSAVE形式がサイズか終了番地かはっきりしないので試したらセーブ時の指定はサイズで、保存されるのは終了番地+1(=開始番地+サイズ)だった。MSXだとセーブ時の指定も保存されるのも終了番地。MSX-BINコンバータでは+1しないといけない(修正)。<br>
+(2022/3/16)ZSDCC化(map88s.c/bas)(2023/3/19-20)V1モード対応化・ALUの使用方法を変更(mp88s2.c/bas)(map882.c/bas)プログラムB400H-にずらしたのでSPLITとの共存は無理に。<br>
+(2023/3/22)旧版でVRAM展開アドレスを+2してた部分を+1に修正。クロック数を数えた結果、ALU転送をldi使用に修正。(2023/3/26)__sdcccall(1)化<br>
+<br>
+[MSX2(SCREEN5)](mapmsx.c/bas) 主な資料:MSX DataPack<br>
+プログラム9C40H-/マップ4000H-/マップパーツ・キャラデータ VRAMページ1/T演算でマスクは不要<br>
+やはり遅い。昔アセンブラで書いた物の3倍くらいは遅い。turboRなら快適か。実機で動かなくて、直した<br><font color="RED">(2022/2/24)ZSDCC版も追加。(mapmsxs.bas/c)<br>
+(2022/3/10)HMMMがLMMMになってた。流石にこれは無い。<br>
+(2022/3/13)CALSLT後にEIしてみる。</font><br>
+(2022/3/14)みんなのトラウマ、SCREEN7版を作ってみた。(mapmsxs7.c/bas)<br>
+(2022/3/17)一部分の定数をマクロ化 (2023/3/4)ZSDCC版でBIOSコール時にIXレジスタを退避するよう修正(2023/3/17).COM版に類した修正<br>
+<br>
+[X1turbo(640x200)](mapx1.c/bas) 主な資料:試験に出るX1、X1-Techknow、Web<br>
+プログラムC000H-/マップ VRAMバンク1 8000H-/マップパーツ PCG/キャラデータ VRAMバンク1 C000H-/シアンを黒にしたVRAMキャラ書きでマスクは不要<br>
+88よりさらにRAMが無いのでファイル分割して裏VRAMに読み込んでturbo用。PCGでも遅い。VRAM計算式もあってか。あと試験に出る～とかの本ないと何も出来ない<br>
+<font color="RED">(2022/3/11)バンク1のアドレス変更。NEWFM音源ドライバーとの共存を目指したがパレット操作でGVRAM消してるだけらしい。旧BASICでしか動かないからturboのBIOS用ワークエリアは見なくした。</font><br>
+(2022/3/15)一部直し忘れを修正(2022/3/16)ZSDCC化(mapx1s.c/bas)<br>
+(2023/2/20)モードBのXキーがCキーになってたバグを修正(2023/3/26)一部アセンブラ化<br>
+<br>
+[FM77AV(640x200)] 主な資料:FM-Techknow<br>
+プログラム6000H-/マップ VRAMバンク1 0000H-/マップパーツ2000H-/キャラデータ4000H-/マスクデータ1600H-/VRAMはMMRでメイン(A000H-)に展開<br>
+CMOC(Cygwin)で無理矢理作ってみた。でも激遅。(map.c/bas)<br><font color="RED">根性でgcc6809もビルドして通してみた。通し方はQAのページも参照。(mapg.c/bas)<br>
+(2022/2/24)キーボード入力も一応入れてみた。たまに取りこぼす。(最後に押された・離されたキーしか見てないため)<br>
+(2022/3/10)一部インラインアセンブラ化。少しは描画がマシに。まだ遅いけど。<br>
+(2022/3/13)IRQ操作を修正。MMLが止まってしまってた。</font><br>
+(2022/3/16)小修正。さらにアセンブラ化した。(2022/3/17)一部WORDアクセスにしてみた。これ以上はフルアセンブラになってしまう。<br>
+(2022/4/10)キーボード入力を割り込み止めてBIOS使用に変えてみた。<br>
+(2023/2/19)パレット版のメモリを限界まで詰めてVRAMからマップを追い出してスムースに変化するようにしてみた。&amp;細かい修正。VSYNC/HSYNC見てますが実機だとちらつくかも。<br>
+(2023/2/20)CMOC版のリビルド/MMRセレクタを任意のVRAM選べるように改造。<br>
+(2023/2/21)一部コメントの修正と一部lddに変更。(2023/2/28)パレット付きCMOC版作成(2023/3/15)SUB CPUを止める期間を見直し<br>
+(2023/3/17)SUB CPUコマンド版作成(map3.c/mpg3.c/mpg0.c/map0.c)(2023/3/18)低解像度版のMMR設定を半分にしてみた<br>
+(2023/3/22)一大決心してキーボード入力を割り込みに戻す。SUB CPUだとどうやっても取りこぼすと思われるのでMAIN CPUにやらせるため。これでも取りこぼしたらもう仕方ない。→やはり取りこぼす。仕様なんだろう。<br>
+→環境(CSCPとか)によってジョイパッドで抜けると暴走する。パッドも割り込みも無関係で、キー無入力でスキャンコードモードからJIS9bitモードに戻すと不具合が起きるらしい。対策なし。<br>
+(2023/3/25)一部lea命令に置換え(2023/3/28)パレット無しgcc/SUB CPU版だけMAINのアセンブラ化(2023/4/20)SUB側RAMにもデータを少し持たせてみたが殆ど速くならず。(2023/12/14)gcc6809版微修正<br>
+<br>
+[MZ-2500(640x200 8色)](mapmz.c/bas) 主な資料:月刊ASCII誌の連載記事、Web<br>
+プログラム8000H-/マップA000H-/マップパーツ PCG(6000H-からロード)/キャラデータE000H-/シアンを黒にしたVRAMキャラ書きでマスクは不要/VRAMはA000H-に展開<br>
+資料があったのでやってみた。実機(サイクルスチールではない)じゃないからかそこそこ速い。しかしVRAMのビット並びが他機種と逆。<br>
+(2022/3/16)ZSDCC化(mapmzs.c/bas)<br>
+<hr>
+結論 Cは遅くてでかい、BASICはメモリの邪魔。メモリ無いからテスト表示以上のことが出来る気がしない。<br>
+MSX2はSC7じゃないこともあるけどRAMには恵まれててパーツが倍定義できる、この辺に8ビット機の衰退が見える<br>
+<font color="RED">(2022/3/10)高速化のために乗除算はなるべく削り、2次元配列も止めました。これ位がCの限度だろうか。フル書き換えに近くない限り極端に遅くは無くなった。<br></font>
+<hr>
+[PC-98(640x200 16色)]gcc-ia16版 主な資料:PC-9801プログラマーズBible<font color="RED"><br>
+(2022/2/25)追加。(map_98.c)</font><br>
+<br>
+[PC AT(640x480 16色)]gcc-ia16版 主な資料:DOS/Vテクニカル・リファレンス・マニュアル、DOS/Vプログラミング・リファレンス<font color="RED"><br>
+(2022/3/19)追加。ただキー入力時に動作不安定。ポインタ周りと割り込みが干渉?(map_at.c)<br>
+(2022/4/12)割り込み中で使用する変数をfarにすることで解決。
+</font><br>
+<br>
+[PC-88VA(640x200 16色)]gcc-ia16版 主な資料:PC-88VAテクニカルマニュアル<font color="RED"><br>
+(2022/3/20)とりあえず追加。(map_va.c)</font><br>
+<br>
+[X68000/X68030(768x512 16色)]GCC版 主な資料:Inside X68000、プログラマーのためのX68000環境ハンドブック<font color="RED"><br>
+(2022/3/29)とりあえず追加。(map_68.c)</font>(2023/4/13)xdev68k版追加。(map_68g.c)<br>
+<br>
+[FM TOWNS(640x480 16色 2画面)] 主な資料:FM TOWNSテクニカルデータブック、Oh!FM TOWNS誌<font color="RED"><br>
+(2022/3/29)とりあえず追加。(map_tw.c)</font>(2023/4/13)TOWNS-gccクロスコンパイル環境版追加。(map_twg.c)<br>
+<br>
+PC-9821でもやってみるべきかも(やる気なし)<br>
+MZの横320ドットモード版や、PC-98の縦400ライン版とかはここ見てる人への宿題。
+<hr>
+何か環境により細い線が出ることがある(PC-88/FM77AV)。何か理由があるらしい。<br>
+<br>
+8bit当時のマップはせいぜい2～8KB位らしい。16KBは大きい。2x2圧縮なら2KBで8画面、16KBで64画面?。<br><br>
+<a href="index.html">[戻]</a><br>
+</html>
