@@ -1,0 +1,91 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" name="" content="text/html; charset=UTF-8">
+<title>m@3レトロパソコン記念館 シューティングゲームテスト</title>
+</head>
+<body bgcolor="#FFFFDD">
+<!--NOBR-->
+<!--S--><!--U--><!--FONT COLOR="BLUE"-->
+m@3レトロパソコン記念館  シューティングゲームテスト<br>
+(2023/11/4別ページ化)<br>
+<hr>
+<A HREF="https://github.com/mazone-ma3/PRJ_SP">GitHub</A>に上げてあります。コンパイルしてbinフォルダのファイルとともに実行してください。
+<hr>
+<B>[内容・履歴]</B><BR>
+X68K/FM TOWNS <font color="RED">(2023/11/1更新)</font> / クロスコンパイル環境版<font color="RED">(2023/12/14更新)</font><br>
+(X68K elf2x68k テスト版<font color="RED">(2024/10/23更新)</font>)<br>
+(FM TOWNS High C テスト版<font color="RED">(2024/10/23更新)</font> / OpenWatcom テスト版(不安定。cmos壊すかも)<font color="RED">(2024/10/23更新)</font> / gcc テスト版(不安定。落ちるかも)<font color="RED">(2024/11/3更新)</font>)<br>
+PC-88VA <font color="RED">(2024/10/23更新)</font> (Digital Mars C テスト版<font color="RED">(2024/10/23更新)</font> / OpenWatcom テスト版<font color="RED">(2024/10/23更新)</font>)<br>
+MSXturboR <font color="RED">(2023/11/17更新)</font> / <br>
+(MSXturboR テスト版<font color="RED">(2024/10/3更新)</font>)<br>
+<hr>
+<b>[動画]</b>(古い版です)<br>
+<a href="https://www.youtube.com/watch?v=ASz4Arqld-U"> FM TOWNS</a> / <a href="https://www.youtube.com/watch?v=AhORgD8JxpU">その2</a><br>
+<a href="https://www.youtube.com/watch?v=FKIBQPqX2Jg"> X680x0</a> / <a href="https://www.youtube.com/watch?v=20HW8DHFiR4">その2</a><br>
+<a href="https://www.youtube.com/watch?v=Sau6ftlZxvI"> PC-88VA</a> / <a href="https://www.youtube.com/watch?v=rznXUKO9HQQ">その2</a><br>
+<a href="https://www.youtube.com/watch?v=KgrFyXq28iM"> プチコンBIG</a> 作りかけ中断<br>
+<hr>
+<b>[QA]</b><br>
+[VA版は音付かないの]<br>
+PMDVAとか使えば鳴らせます。<font color="RED">ひっそり更新。重いのはテンポ指定を変えることで少しはマシになったようなならないような。(元の問題なので改造版をあたってください。)ドライバとデータをセットして下さい。</font>(ローダとしてとりあえずPMPを起動してます。)<br>
+<br>
+[turboR版は音付かないの]<br>
+MGSDRVとか使えば鳴らせます。<font color="RED">ひっそり更新。ドライバとデータをセットして下さい。</font>(ローダとしてとりあえずMGSPのコマンドライン版を起動してます。グラフィック版じゃないので注意。RAMのアドレス重なってる気もするけどマッパに常駐するらしく動いてる。)<br>
+<br>
+[.BATに書いてあるBGM再生に必要なツールが見つからない]<br>
+まだ公開されてるものだけを使ってる筈ですがもし無くなってたら諦めて下さい。転載可でも同梱はしません。リンクも貼りません。無くても動くようにはしてあるし。<br>
+<br>
+[X68KやFM TOWNSの低解像度モードのアスペクト比の変え方]<br>
+CRTC叩く資料はあるけど実装してません。スコルピウスにZ_CRT.Rというのが入ってます。雷電伝説とかこっそり縦解像度を増やしてるのですが誰も触れませんね。(スコアも直接ダブルバッファに書き込んでる気がする。)<br>
+<br>
+[何故TOWNS版よりX68K版の方が弾速が遅いんですか]<br>
+TOWNSは60fps、X68Kは55fpsだからです。VSYNCでなくタイマで同期取るか速度調整するかX68KのCRTCを60fpsにしないと同等にはなりません<br>
+<br>
+[そもそも何でこの弾速なんですか]<br>
+WonderSwanColorのSTN液晶で見える限界(75fps動作時)です<br>
+<br>
+[10MHzで100スプライトも出てないのに処理落ちするのは軟弱では]<br>
+<font color="RED">Cじゃ重いだけかと。</font>
+<br>当たり判定が範囲固定(怠慢)でもこれなので。(本来はMSX2版みたくブロックで判定するとかの処理が必要/コンパイルとか超連射とかM-KAIシューがやってるみたく)<br><br>
+あと真面目にVSYNC待ってるので処理落ちかかると素直にFPSが半分になってしまいます。スプライトをダブルバッファ化して割り込み使って画面更新でもしないと。→テスト版で修正<br>
+<br>
+[何故TOWNS版は音痴なの]<br>
+EUPとMSVの違いのせいやforRBIOS呼んでるせいではないみたいです<br>
+というか単純に重い。
+<font color="RED">ドライバの分解能を下げてみてます。あまり変化なし?ついでにSNDのWPK化。</font><br>
+MSVライブラリを2.00から2.08に変更。<br>
+うんづのVSYNCは切る。<br>
+<br>
+[星代わりのドットの数の違い]<br>
+X68KとTOWNSでは同じ数を書いてる筈ですが仮想画面の大きさが違うので<br>
+<br>
+[何で完成させなかったんですか]<br>
+技術デモです。ゲーマーではないし。WSC用に途中まで作ったゲームの移植っぽい物でデータは流用です。スコアゲージと効果音入れるの面倒なので投げてます。<br><font color="RED">スコアは入れてみました。効果音もVA以外入れました。VAとMSXはノイズのみ入れました。</font><br>
+<br>
+現在、もうちょい濃い物を妄想しています。(妄想です)だらだらやります。<br>
+<br>
+[直した不具合]<br>
+画面表示周り。VAの画面上方向のクリッピングと色反転とか。X68Kのタイトル・TOWNSのスターとかの実機でおかしくなるところとか(完全ではない。ダブルバッファじゃないので)。全機種の自機弾が1ドットずれてたとか。<br>
+<br>
+MSXTR版で時々縦スクロールレジスタが誤セットされるのは知ってます。<br>
+あと実機だとちらつきます。→テスト版で修正<br>
+FM TOWNS版実機で効果音が発生すると画面がぶれるのも知ってます。<br>
+X68K版でソフトウェアキーボードが出せてしまうのも気づいてます。(2024/8/19追記)→テスト版で修正
+<br>
+TOWNS版でOAK起動するとキーが入らなくなります。オーバーレイ起動はこけます。<br>
+Watcom版でコンベンショナルメモリが十分空いてないとキーマトリクスが入りません。最初の1MBにデータが配置されないとリアルモードからは見えない80386の仕様です。<br>
+VA版ラップアラウンドスクロールになってません変なことしてます。→修正<br>
+X68K版PCM8Aが解除できないことがあり。<br>
+<br>
+<br>
+FM TOWNS版の文字やタイトルロゴはスプライトで書いてます。X68K版の文字はBGでタイトルロゴはテキスト画面で書いてます。VA版のタイトルロゴはスプライトです。<br>
+<br>
+<br>
+[cmos壊すとか物騒ですね]<br>
+TOWNS版に割り込み実装しようとして。High CはHIS使ってみたものの。Watcomは撃沈。津軽のHIGH FIDELITYで動くかどうかというところで後は知らず。DSレジスタが厄介。EOIは適当。READY中はスプライトコントローラーを切ろうとして、止めた。<br>
+<br>
+<a href="index.html">[戻]</a><br>
+</body>
+</html>
