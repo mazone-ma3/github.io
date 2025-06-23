@@ -15,18 +15,18 @@ m@3レトロパソコン記念館  シューティングゲームテスト Proje
 (ディスクイメージじゃないのでコンパイル後のオブジェクトと各binフォルダ以下をL3 DiskExplorerやeditdisk(DiskExplorer)などの操作ツールで入れて下さい)<br>
 <hr>
 <B>[内容・履歴]</B><BR>
-X68K/FM TOWNS <font color="RED">(2023/11/1更新)</font> / クロスコンパイル環境版<font color="RED">(2023/12/14更新)</font><br>
-(X68K elf2x68k テスト版<font color="RED">(2024/10/23更新)</font>)<br>
+X68000/FM TOWNS <font color="RED">(2023/11/1更新)</font> / クロスコンパイル環境版<font color="RED">(2023/12/14更新)</font><br>
+(X68000 elf2x68k テスト版<font color="RED">(2024/10/23更新)</font>)<br>
 (FM TOWNS High C テスト版<font color="RED">(2024/10/23更新)</font> / OpenWatcom テスト版(不安定。cmos壊すかも)<font color="RED">(2024/10/23更新)</font> / gcc テスト版(不安定。落ちるかも)<font color="RED">(2024/11/3更新)</font>)<br>
 PC-88VA <font color="RED">(2024/10/23更新)</font> (Digital Mars C テスト版<font color="RED">(2024/10/23更新)</font> / OpenWatcom テスト版<font color="RED">(2024/10/23更新)</font>)<br>
 MSXturboR <font color="RED">(2023/11/17更新)</font> / <br>
 (MSXturboR テスト版<font color="RED">(2024/10/3更新)</font>)<br>
-Pyxel版(別ページ)<br>
+Pyxel(<A HREF="py">別ページ</A>)<br>
 <hr>
 <b>[動画]</b>(古い版です)<br>
-<a href="https://www.youtube.com/watch?v=ASz4Arqld-U"> FM TOWNS</a> / <a href="https://www.youtube.com/watch?v=AhORgD8JxpU">その2</a><br>
-<a href="https://www.youtube.com/watch?v=FKIBQPqX2Jg"> X680x0</a> / <a href="https://www.youtube.com/watch?v=20HW8DHFiR4">その2</a><br>
-<a href="https://www.youtube.com/watch?v=Sau6ftlZxvI"> PC-88VA</a> / <a href="https://www.youtube.com/watch?v=rznXUKO9HQQ">その2</a><br>
+<a href="https://www.youtube.com/watch?v=ASz4Arqld-U"> FM TOWNS</a> / <a href="https://www.youtube.com/watch?v=AhORgD8JxpU">その2</a><br><br>
+<a href="https://www.youtube.com/watch?v=FKIBQPqX2Jg"> X680x0</a> / <a href="https://www.youtube.com/watch?v=20HW8DHFiR4">その2</a><br><br>
+<a href="https://www.youtube.com/watch?v=Sau6ftlZxvI"> PC-88VA</a> / <a href="https://www.youtube.com/watch?v=rznXUKO9HQQ">その2</a><br><br>
 <a href="https://www.youtube.com/watch?v=KgrFyXq28iM"> プチコンBIG</a> 作りかけ中断<br>
 <hr>
 <b>[QA]</b><br>
@@ -39,11 +39,11 @@ MGSDRVとか使えば鳴らせます。<font color="RED">ひっそり更新。�
 [.BATに書いてあるBGM再生に必要なツールが見つからない]<br>
 まだ公開されてるものだけを使ってる筈ですがもし無くなってたら諦めて下さい。転載可でも同梱はしません。リンクも貼りません。無くても動くようにはしてあるし。<br>
 <br>
-[X68KやFM TOWNSの低解像度モードのアスペクト比の変え方]<br>
+[X68000やFM TOWNSの低解像度モードのアスペクト比の変え方]<br>
 CRTC叩く資料はあるけど実装してません。スコルピウスにZ_CRT.Rというのが入ってます。雷電伝説とかこっそり縦解像度を増やしてるのですが誰も触れませんね。(スコアも直接ダブルバッファに書き込んでる気がする。)<br>
 <br>
-[何故TOWNS版よりX68K版の方が弾速が遅いんですか]<br>
-TOWNSは60fps、X68Kは55fpsだからです。VSYNCでなくタイマで同期取るか速度調整するかX68KのCRTCを60fpsにしないと同等にはなりません<br>
+[何故TOWNS版よりX68000版の方が弾速が遅いんですか]<br>
+TOWNSは60fps、X68000は55fpsだからです。VSYNCでなくタイマで同期取るか速度調整するかX68000のCRTCを60fpsにしないと同等にはなりません<br>
 <br>
 [そもそも何でこの弾速なんですか]<br>
 WonderSwanColorのSTN液晶で見える限界(75fps動作時)です<br>
@@ -61,7 +61,7 @@ MSVライブラリを2.00から2.08に変更。<br>
 うんづのVSYNCは切る。<br>
 <br>
 [星代わりのドットの数の違い]<br>
-X68KとTOWNSでは同じ数を書いてる筈ですが仮想画面の大きさが違うので<br>
+X68000とTOWNSでは同じ数を書いてる筈ですが仮想画面の大きさが違うので<br>
 <br>
 [何で完成させなかったんですか]<br>
 技術デモです。ゲーマーではないし。WSC用に途中まで作ったゲームの移植っぽい物でデータは流用です。スコアゲージと効果音入れるの面倒なので投げてます。<br><font color="RED">スコアは入れてみました。効果音もVA以外入れました。VAとMSXはノイズのみ入れました。</font><br>
@@ -69,20 +69,20 @@ X68KとTOWNSでは同じ数を書いてる筈ですが仮想画面の大きさ�
 現在、もうちょい濃い物を妄想しています。(妄想です)だらだらやります。<br>
 <br>
 [直した不具合]<br>
-画面表示周り。VAの画面上方向のクリッピングと色反転とか。X68Kのタイトル・TOWNSのスターとかの実機でおかしくなるところとか(完全ではない。ダブルバッファじゃないので)。全機種の自機弾が1ドットずれてたとか。<br>
+画面表示周り。VAの画面上方向のクリッピングと色反転とか。X68000のタイトル・TOWNSのスターとかの実機でおかしくなるところとか(完全ではない。ダブルバッファじゃないので)。全機種の自機弾が1ドットずれてたとか。<br>
 <br>
 MSXTR版で時々縦スクロールレジスタが誤セットされるのは知ってます。<br>
 あと実機だとちらつきます。→テスト版で修正<br>
 FM TOWNS版実機で効果音が発生すると画面がぶれるのも知ってます。<br>
-X68K版でソフトウェアキーボードが出せてしまうのも気づいてます。(2024/8/19追記)→テスト版で修正
+X68000版でソフトウェアキーボードが出せてしまうのも気づいてます。(2024/8/19追記)→テスト版で修正
 <br>
 TOWNS版でOAK起動するとキーが入らなくなります。オーバーレイ起動はこけます。<br>
 Watcom版でコンベンショナルメモリが十分空いてないとキーマトリクスが入りません。最初の1MBにデータが配置されないとリアルモードからは見えない80386の仕様です。<br>
 VA版ラップアラウンドスクロールになってません変なことしてます。→修正<br>
-X68K版PCM8Aが解除できないことがあり。<br>
+X68000版PCM8Aが解除できないことがあり。<br>
 <br>
 <br>
-FM TOWNS版の文字やタイトルロゴはスプライトで書いてます。X68K版の文字はBGでタイトルロゴはテキスト画面で書いてます。VA版のタイトルロゴはスプライトです。<br>
+FM TOWNS版の文字やタイトルロゴはスプライトで書いてます。X68000版の文字はBGでタイトルロゴはテキスト画面で書いてます。VA版のタイトルロゴはスプライトです。<br>
 <br>
 <br>
 [cmos壊すとか物騒ですね]<br>
