@@ -135,6 +135,8 @@ z88dkで+MSXしようとするとeZ80-CLANGではこけます。エラーの該�
 インライン展開させたくない時は関数名プロトタイプの後に__attribute__((noinline));を付けて下さい。(gccと同じ)<BR>
 <BR>
 ez80-CLANGでchar型の演算に失敗するようです。またリンクが通らないz88dkの版が出てるようです。(2025/7/4)<BR>
+→リンクが通らないのはz88dk\lib\clibs\z80_crt0.libの問題らしい。<BR>
+z88dk\libsrc\_DEVELOPMENT\l\clang.lstへの__ldivs.asmの記入漏れ。(2025/7/6)<BR>
 <BR>
 [他]<BR>
 メモリマップドI/Oやワークエリアを参照するにはポインタ変数を使うのではなくて#define pointer ((volatile unsigned char *)0x0000)のようにマクロ定義した方がメモリが小さくなります。(修正は当面見送ります)constともまた違うらしい。<BR><BR>
