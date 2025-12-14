@@ -6,7 +6,7 @@
 </HEAD>
 <BODY BGCOLOR="#FFFFDD">
 <!S><!U><!FONT COLOR="BLUE">
-m@3記念館 QA 2025/7/9改<BR>
+m@3記念館 QA 2025/12/14改<BR>
 <BR>
 [このサイト何]<BR>
 8～32bitコンピュータの記念館として収集物の記念撮影した画像を上げてます。<BR>
@@ -67,6 +67,8 @@ crt0.Sが何故かフォルダ名で誤生成されたら、フォルダに直�
 インラインアセンブラの書式とラベル(行頭に_とか入れないとno headerとか出る)も直す。あとは先頭番地から実行できます。<BR>
 なおnewlibの生成はできず?。tarballも間違ってました。libc.a欲しければgcc6809-CoCoが参考になります。<BR><BR>
 gcc6809 CoCoで探せばCygwin用バイナリがあるらしい。今はWSL2/Ubuntuで.debがある(後述)。<BR>
+<BR>
+<FONT COLOR="RED">4_3_branchをMSYS2でビルドする場合。</FONT>MINGWでなくMSYS2 MSYSを起動。makefile内のSudoを潰す。zlib1.dllが無いかもしれないのでどうにかする。上手く行けばパス通してコマンドプロンプトからも使えます。<BR>
 <BR>
 [CMOCって何]<BR>
 6809のCライクコンパイラ。動かすまで難解なgcc6809に代わる物かも。ただWin版はうまく動かなかったのでCygwin等でmakeする必要あり<BR>
