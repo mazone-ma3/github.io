@@ -121,9 +121,12 @@ CF-SZ5では出来なかった。CF-QV1の方で構築して持ってきた。�
 <BR>
 [CLANGサンプルの改訂版]<BR>
 z88dkで+MSXしようとするとeZ80-CLANGではこけます。エラーの該当箇所を削れば通ります。<BR>
+またはこうするらしい。(2025/12/18)<BR>
+#define MSX2_SUBTYPE (*(volatile unsigned char *)0x2d)<BR>
+<BR>
 インライン展開させたくない時は関数名プロトタイプの後に__attribute__((noinline));を付けて下さい。(gccと同じ)<BR>
 <BR>
-ez80-CLANGでchar型の演算に失敗するようです。またリンクが通らないz88dkの版が出てるようです。(2025/7/4)<BR>
+ez80-CLANGでchar型の演算に失敗するようです。またlong型使うとリンクが通らないz88dkの版が出てるようです。(2025/7/4)<BR>
 →リンクが通らないのはz88dk\lib\clibs\z80_crt0.libの問題らしい。<BR>
 z88dk\libsrc\_DEVELOPMENT\l\clang.lstへの__ldivs.asmの記入漏れ。<BR>
 signed char用の__bdivsはそもそも無いらしい。<BR>
