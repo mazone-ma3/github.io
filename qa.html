@@ -163,7 +163,7 @@ IO.SYSをWINBOOT.SYSにリネームしてコピーしてみてください。<BR
 [llvm-mc6809のビルド]<BR>
 Ubuntuからgcc抜いてClangで通った。未完成。<BR>
 →新版を同じ環境でCmakeしようとしたら途中でユーザーが停止させたになってその後WSLごと落ちた。(2025/6/27)<BR>
-→メモリ不足が原因。.wslconfigでmemory=12GB、swap=8GB以上にいじった上で、ninja -j1で再開する。なおClangは環境変数CC/CXXで指定できる。でも絶賛未完成。(2026/2/6)<BR>
+→メモリ不足が原因。.wslconfigでmemory=12GB、swap=8GB以上にいじった上で、ninja -j1で再開する。なおClangは環境変数CC/CXXで指定できる。でも絶賛未完成。あと、素だと70GB位持っていかれます。(2026/2/6)<BR>
 <BR>
 [X68000のBG面はラスタースクロールできないの]<BR>
 InsideX68000のミスでXとYのレジスタが逆になってます。<BR>
