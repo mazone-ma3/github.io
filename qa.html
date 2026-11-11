@@ -197,6 +197,9 @@ Ubuntu用のは標準で-m68k対応してるようですがWindows用のは標�
 [FM TOWNS OS上のR50互換表示モード]<BR>
 赤本の記述と違って、モード1同士の合成です。MS-DOSで起動していない場合、プロテクトモードでは割り込みで0x404ポートをメインメモリ側に勝手に選択されるようなので、プレーンドアクセスモードでVRAM側に書くには割り込みを止めてVRAMを選択しておく必要があります。<BR>
 <BR>
+[FM TOWNS gccのgenexp3.cをLinux上で生成]<BR>
+stricmp→strcasecmp、struct→struct __attribute__((packed))、stdint.hをincludeして変数の型をint32_tやuint32_tなどに修正する。要は関数名を変えてパディングを防いで型サイズも386仕様にする。Clangで通すならmain関数もint型にする。<BR>
+<BR>
 <A HREF="index.html">[戻]</A><BR>
 </BODY>
 </HTML>
